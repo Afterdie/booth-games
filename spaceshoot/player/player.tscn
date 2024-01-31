@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds0rsm54hefkc"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_0kyq2"]
+[ext_resource type="Texture2D" uid="uid://bp6ug3jlkq46i" path="res://icon.svg" id="2_vo802"]
+[ext_resource type="PackedScene" uid="uid://du68hc6nu66yq" path="res://spaceshoot/player/bullet.tscn" id="3_itd46"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ougu"]
+radius = 64.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_0kyq2")
+
+[node name="playerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.78125, 0.78125)
+texture = ExtResource("2_vo802")
+
+[node name="playerCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ougu")
+
+[node name="shootCooldown" type="Timer" parent="."]
+wait_time = 11.811
+one_shot = true
+autostart = true
+
+[node name="shootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+
+[node name="bullet" parent="shootingPoint" instance=ExtResource("3_itd46")]
