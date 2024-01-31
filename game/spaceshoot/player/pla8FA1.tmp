@@ -29,9 +29,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "score"
 
-[node name="regenCooldown" type="Timer" parent="."]
+[node name="shootCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="chargeTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="regenCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="shootCooldown" to="." method="_on_shoot_cooldown_timeout"]
