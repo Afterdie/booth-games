@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var acceleration:float = 7000
 @export var friction:float = 7
 
-@export var shotCount:int = 6
-@export var regenCooldown:float = 2
-var charging:bool = false
+@export var shotCount:int = 6 #changes in real time
+var startingShots:int = 0 #changes when charging starts
 
+@export var regenCooldown:float = 2 #stores the duration between each bulllet
 @onready var timer = $regenCooldown
+
+var charging:bool = false #state machine
 @onready var chargeTimer = $chargeTimer
 
 func _ready():
@@ -20,7 +22,7 @@ func _process(delta:float) -> void:
 
 
 func _physics_process(delta:float) -> void:
-	
+	updateShot()
 	move_and_slide()
 	checkShoot()
 	shotRegen()
@@ -53,27 +55,33 @@ func updateAmmo():
 #check if the shoot button has been clicked
 func checkShoot():
 	if(Input.is_action_just_pressed("shoot") && shotCount>0):
-		chargeTimer.start(6)
-	if(Input.is_action_just_released("shoot") && chargeTimer.is_stopped()):
-		shoot(0)
-	elif(Input.is_action_just_released("shoot") && !chargeTimer.is_stopped()):
-		shoot(1)
+		startingShots = shotCount
+		charging=true
+		chargeTimer.start(shotCount)
+
+	if(Input.is_action_just_released("shoot")):
+		print(startingShots-floor(chargeTimer.time_left))
+		charging=false
+		shoot(startingShots - floor(chargeTimer.time_left))
 	#add logic for charged shot
+
+func updateShot():
+	if(charging):
+		shotCount = chargeTimer.time_left
 
 #regen the bullets
 func shotRegen():
-	if(shotCount<6 && timer.is_stopped()):
+	if(shotCount<6 && timer.is_stopped() && !charging):
 		timer.start(regenCooldown)
 
 func _on_shoot_cooldown_timeout():
 	shotCount+=1
 
 #called when the checkshoot sees that button has been pressed
-func shoot(type:bool):
-	print("shot a ball")
+func shoot(power:int):
+	print("shot" ,power, " balls")
 	if (shotCount>0):
 		const bullet = preload("res://spaceshoot/player/bullet.tscn")
 		var new_bullet = bullet.instantiate()
 		new_bullet.global_position = %shootingPoint.global_position
 		%shootingPoint.add_child(new_bullet)
-		shotCount-=1
