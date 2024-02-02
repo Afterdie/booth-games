@@ -23,6 +23,10 @@ var tempShot:int = 6 #for visual purposes
 
 func _ready():
 	shootingDeviation*=5000
+	if(id==1):
+		characterHp.modulate = Color8(255,0,102)
+	else:
+		characterHp.modulate = Color8(0,204,255)
 
 func _process(delta:float) -> void:
 	if(curShot>6): #if for some reason it exceeds
@@ -116,10 +120,12 @@ func _on_shoot_cooldown_timeout():
 #-------------------Health Logic-------------------#
 
 @onready var hpLabel = $hp
+@onready var characterHp = $characterHp
 
 func take_damage(ap:int):
+	characterHp.modulate.a8 -= 255/10
 	hp-=ap
-	if(hp==0):
+	if(hp<=0):
 		death()
 	print("took damage")
 

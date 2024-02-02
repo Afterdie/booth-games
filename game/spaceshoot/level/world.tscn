@@ -15,6 +15,7 @@ position = Vector2(308, 198)
 id = 1
 
 [node name="bounds" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
 position = Vector2(-15.75, 358.5)

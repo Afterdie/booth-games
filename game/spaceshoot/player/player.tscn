@@ -1,19 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://buhnahgb68egf"]
+[gd_scene load_steps=5 format=3 uid="uid://buhnahgb68egf"]
 
 [ext_resource type="Script" path="res://spaceshoot/player/Player.gd" id="1_2gi33"]
-[ext_resource type="Texture2D" uid="uid://bp6ug3jlkq46i" path="res://icon.svg" id="2_vo802"]
+[ext_resource type="Texture2D" uid="uid://b2vqcwewmq0hv" path="res://spaceshoot/player/assets/characterHp.svg" id="2_yii2k"]
+[ext_resource type="Texture2D" uid="uid://dr0owrk6vw1bo" path="res://spaceshoot/player/assets/characterOutline.svg" id="3_tpv7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ougu"]
 radius = 59.0339
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_2gi33")
 
-[node name="playerSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.831055, 0.831055)
-texture = ExtResource("2_vo802")
+[node name="characterHp" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_yii2k")
+
+[node name="characterOutline" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_tpv7c")
 
 [node name="playerCollider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_4ougu")
 
 [node name="shootingPoint" type="Marker2D" parent="."]
