@@ -19,13 +19,8 @@ texture = ExtResource("2_drt0w")
 shape = SubResource("RectangleShape2D_qo3b6")
 
 [node name="shotTrail" type="CPUParticles2D" parent="."]
-emission_shape = 3
-emission_rect_extents = Vector2(10, 10)
-gravity = Vector2(0, 0)
-scale_amount_min = 2.0
-scale_amount_max = 7.0
-
-[node name="shotTrail2" type="CPUParticles2D" parent="."]
+amount = 4
+lifetime = 0.2
 emission_shape = 3
 emission_rect_extents = Vector2(10, 10)
 gravity = Vector2(0, 0)
