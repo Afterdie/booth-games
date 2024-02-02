@@ -1,0 +1,61 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_50_10)">
+<rect width="1280" height="720" fill="black"/>
+<rect x="41" width="2" height="720" fill="white"/>
+<rect x="87" width="2" height="720" fill="white"/>
+<rect x="133" width="2" height="720" fill="white"/>
+<rect x="179" width="2" height="720" fill="white"/>
+<rect x="225" width="2" height="720" fill="white"/>
+<rect x="271" width="2" height="720" fill="white"/>
+<rect x="317" width="2" height="720" fill="white"/>
+<rect x="363" width="2" height="720" fill="white"/>
+<rect x="409" width="2" height="720" fill="white"/>
+<rect x="455" width="2" height="720" fill="white"/>
+<rect x="501" width="2" height="720" fill="white"/>
+<rect x="547" width="2" height="720" fill="white"/>
+<rect x="593" width="2" height="720" fill="white"/>
+<rect x="639" width="2" height="720" fill="white"/>
+<rect x="685" width="2" height="720" fill="white"/>
+<rect x="731" width="2" height="720" fill="white"/>
+<rect x="777" width="2" height="720" fill="white"/>
+<rect x="823" width="2" height="720" fill="white"/>
+<rect x="869" width="2" height="720" fill="white"/>
+<rect x="915" width="2" height="720" fill="white"/>
+<rect x="961" width="2" height="720" fill="white"/>
+<rect x="1007" width="2" height="720" fill="white"/>
+<rect x="1053" width="2" height="720" fill="white"/>
+<rect x="1099" width="2" height="720" fill="white"/>
+<rect x="1145" width="2" height="720" fill="white"/>
+<rect x="1191" width="2" height="720" fill="white"/>
+<rect x="1237" width="2" height="720" fill="white"/>
+<rect y="16" width="2" height="1280" transform="rotate(-90 0 16)" fill="white"/>
+<rect y="62" width="2" height="1280" transform="rotate(-90 0 62)" fill="white"/>
+<rect y="108" width="2" height="1280" transform="rotate(-90 0 108)" fill="white"/>
+<rect y="154" width="2" height="1280" transform="rotate(-90 0 154)" fill="white"/>
+<rect y="200" width="2" height="1280" transform="rotate(-90 0 200)" fill="white"/>
+<rect y="246" width="2" height="1280" transform="rotate(-90 0 246)" fill="white"/>
+<rect y="292" width="2" height="1280" transform="rotate(-90 0 292)" fill="white"/>
+<rect y="338" width="2" height="1280" transform="rotate(-90 0 338)" fill="white"/>
+<rect y="384" width="2" height="1280" transform="rotate(-90 0 384)" fill="white"/>
+<rect y="430" width="2" height="1280" transform="rotate(-90 0 430)" fill="white"/>
+<rect y="476" width="2" height="1280" transform="rotate(-90 0 476)" fill="white"/>
+<rect y="522" width="2" height="1280" transform="rotate(-90 0 522)" fill="white"/>
+<rect y="568" width="2" height="1280" transform="rotate(-90 0 568)" fill="white"/>
+<rect y="614" width="2" height="1280" transform="rotate(-90 0 614)" fill="white"/>
+<rect y="660" width="2" height="1280" transform="rotate(-90 0 660)" fill="white"/>
+<rect y="706" width="2" height="1280" transform="rotate(-90 0 706)" fill="white"/>
+<rect width="1280" height="720" fill="black" fill-opacity="0.8"/>
+<ellipse cx="640" cy="360" rx="698" ry="454" fill="url(#paint0_radial_50_10)"/>
+<rect x="639" width="3" height="720" fill="#434242"/>
+</g>
+<rect x="5" y="5" width="1270" height="710" stroke="#535353" stroke-width="10"/>
+<defs>
+<radialGradient id="paint0_radial_50_10" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(640 360) rotate(90) scale(454 838.156)">
+<stop offset="0.279904"/>
+<stop offset="1" stop-opacity="0"/>
+</radialGradient>
+<clipPath id="clip0_50_10">
+<rect width="1280" height="720" fill="white"/>
+</clipPath>
+</defs>
+</svg>

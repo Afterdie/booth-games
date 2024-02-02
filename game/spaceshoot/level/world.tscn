@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmyoapuw6ppee"]
+[gd_scene load_steps=5 format=3 uid="uid://dmyoapuw6ppee"]
 
 [ext_resource type="PackedScene" uid="uid://buhnahgb68egf" path="res://spaceshoot/player/player.tscn" id="1_3qw6i"]
+[ext_resource type="Texture2D" uid="uid://wq8n2h8kdplg" path="res://spaceshoot/player/assets/bg.svg" id="1_mvkdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2842x"]
 size = Vector2(31.25, 1297.5)
@@ -9,6 +10,10 @@ size = Vector2(31.25, 1297.5)
 size = Vector2(4, 20)
 
 [node name="World" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_mvkdp")
 
 [node name="P1" parent="." instance=ExtResource("1_3qw6i")]
 position = Vector2(308, 198)
