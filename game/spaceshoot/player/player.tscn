@@ -32,12 +32,17 @@ text = "score"
 one_shot = true
 
 [node name="chargeTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="time" type="Label" parent="."]
 offset_left = 93.0
 offset_top = 107.0
 offset_right = 133.0
 offset_bottom = 130.0
+
+[node name="hp" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="timeout" from="regenCooldown" to="." method="_on_shoot_cooldown_timeout"]
 [connection signal="timeout" from="chargeTimer" to="." method="_on_charge_timer_timeout"]

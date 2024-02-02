@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var id:int
+
 #Movement Variables#
 @export var acceleration:float = 7000
 @export var friction:float = 7
@@ -16,6 +18,9 @@ var tempShot:int = 6 #for visual purposes
 
 @export var shootingDeviation:int = 5000
 
+#HP variables
+@export var hp:int = 100
+
 func _ready():
 	pass
 
@@ -26,28 +31,30 @@ func _process(delta:float) -> void:
 	if(Input.is_action_just_pressed("dev")):
 		curShot = 6
 	
-	updateShot()
+	updateUI()
 	apply_traction(delta)
 	apply_friction(delta)
 
 func _physics_process(delta:float) -> void:
-	print(velocity.y)
 	move_and_slide()
 	checkShoot()
 	shotRegen()
 
+func updateUI():
+	updateHp()
+	updateShot()
  #-------------------Movement Logic-------------------#
 
 func apply_traction(delta:float) -> void:
 	var traction: Vector2 = Vector2()
 	
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("p%s_up" %id):
 		traction.y -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("p%s_down" %id):
 		traction.y += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("p%s_left" %id):
 		traction.x -= 1
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("p%s_right" %id):
 		traction.x += 1
 	traction = traction.normalized()
 	velocity += traction * acceleration * delta
@@ -59,10 +66,10 @@ func apply_friction(delta:float) -> void:
 
 #check if the shoot button has been clicked
 func checkShoot():
-	if(Input.is_action_just_pressed("shoot") && curShot>0):
+	if(Input.is_action_just_pressed("p%s_shoot" %id) && curShot>0):
 		charging = true
 		chargeTimer.start(curShot)
-	if(Input.is_action_just_released("shoot")):
+	if(Input.is_action_just_released("p%s_shoot" %id)):
 		charging = false
 		shoot(curShot-floor(chargeTimer.time_left))
 		chargeTimer.stop()
@@ -77,6 +84,7 @@ func shoot(power:int):
 		new_bullet.global_position = %shootingPoint.global_position
 		var yComp:float = 0.0 + velocity.y/shootingDeviation
 		new_bullet.setVelocity(Vector2(1,yComp))
+		new_bullet.setAp(power)
 		%shootingPoint.add_child(new_bullet)
 		curShot-=power
 
@@ -98,3 +106,14 @@ func shotRegen():
 func _on_shoot_cooldown_timeout():
 	print("added one bullet")
 	curShot+=1
+
+#-------------------Health Logic-------------------#
+
+@onready var hpLabel = $hp
+
+func take_damage(ap:int):
+	hp-=ap
+	print("took damage")
+
+func updateHp():
+	hpLabel.text = str(hp)
