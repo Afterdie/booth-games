@@ -126,7 +126,7 @@ func _on_shoot_cooldown_timeout():
 func take_damage(ap:int):
 	characterHp.modulate.a8 -= 255/10
 	hp-=ap
-	$dmgAnim.dmgAnimation()
+	$dmgAnim.play("damage")
 	$dmgSFX.play()
 	if(hp<=0):
 		death()
