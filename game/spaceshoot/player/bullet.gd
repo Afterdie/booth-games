@@ -9,6 +9,7 @@ func _physics_process(delta):
 
 func setVelocity(passed):
 	direction = passed
+	scale.x = passed.x
 
 func setAp(value):
 	ap=value*10

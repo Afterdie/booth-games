@@ -81,6 +81,7 @@ func shoot(power:int):
 		const bullet = preload("res://spaceshoot/player/bullet.tscn")
 		var new_bullet = bullet.instantiate()
 		new_bullet.scale += Vector2(power,power)*0.7
+		
 		new_bullet.global_position = %shootingPoint.global_position
 		var yComp:float = 0.0 + velocity.y/shootingDeviation
 		var xComp:float
@@ -118,7 +119,13 @@ func _on_shoot_cooldown_timeout():
 
 func take_damage(ap:int):
 	hp-=ap
+	if(hp==0):
+		death()
 	print("took damage")
+
+func death():
+	print("p%s lost" %id) 
+	queue_free()
 
 func updateHp():
 	hpLabel.text = str(hp)
