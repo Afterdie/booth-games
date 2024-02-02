@@ -1,21 +1,25 @@
 extends CharacterBody2D
 
+#Movement Variables#
 @export var acceleration:float = 7000
 @export var friction:float = 7
 
-var shotCount:int = 6 #changes in real time
-var curShot:int = shotCount
+#Shooting Variables#
+@export var shotCount:int = 6 #changes in real time
+var curShot:int = shotCount #manipulation in code
 
-var charging:bool = false
-@export var regenCooldown:float = 2 #stores the duration between each bulllet
-@onready var timer = $regenCooldown
-@onready var chargeTimer = $chargeTimer
+var charging:bool = false #charging flag
+@export var regenCooldown:float = 2 #duration between each bulllet regen
+@onready var timer = $regenCooldown #timer for the bulllt regen
+@onready var chargeTimer = $chargeTimer #how long has the shoot btn been held down
+var tempShot:int = 6 #for visual purposes
+
 
 func _ready():
 	pass
 
 func _process(delta:float) -> void:
-	updateAmmo()
+	updateShot()
 	apply_traction(delta)
 	apply_friction(delta)
 
@@ -45,10 +49,6 @@ func apply_friction(delta:float) -> void:
 
  #-------------------Shooting Logic-------------------#
 
-#updates the lable for ammo
-func updateAmmo():
-	%score.text = str(curShot)
-
 #check if the shoot button has been clicked
 func checkShoot():
 	if(Input.is_action_just_pressed("shoot") && curShot>0):
@@ -58,7 +58,27 @@ func checkShoot():
 		charging = false
 		shoot(curShot-floor(chargeTimer.time_left))
 		chargeTimer.stop()
-#regen the bullets
+
+#called after button released
+func shoot(power:int):
+	print(power, " balls")
+	if(curShot>0):
+		const bullet = preload("res://spaceshoot/player/bullet.tscn")
+		var new_bullet = bullet.instantiate()
+		new_bullet.scale += Vector2(power,power)*0.7
+		new_bullet.global_position = %shootingPoint.global_position
+		%shootingPoint.add_child(new_bullet)
+		curShot-=power
+
+#update ui element
+func updateShot():
+	tempShot = chargeTimer.time_left
+	if(charging):
+		%score.text = str(tempShot)
+	else:
+		%score.text = str(curShot)
+
+#regen logic
 func shotRegen():
 	if(charging):
 		timer.stop()
@@ -68,14 +88,3 @@ func shotRegen():
 func _on_shoot_cooldown_timeout():
 	print("added one bullet")
 	curShot+=1
-
-#called when the checkshoot sees that button has been pressed
-func shoot(power:int):
-	print(power, " balls")
-	if(curShot>0):
-		print("shot" ,power, " balls")
-		const bullet = preload("res://spaceshoot/player/bullet.tscn")
-		var new_bullet = bullet.instantiate()
-		new_bullet.global_position = %shootingPoint.global_position
-		%shootingPoint.add_child(new_bullet)
-		curShot-=power
