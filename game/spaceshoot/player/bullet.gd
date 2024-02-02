@@ -1,15 +1,17 @@
 extends Area2D
 
-@export var shotSpeed:int = 1100
+@export var shotSpeed:int = 1
 var direction = Vector2(1,0)
 var ap:int
+
+func _ready():
+	shotSpeed*=1500
 
 func _physics_process(delta):
 	position += direction * shotSpeed * delta
 
 func setVelocity(passed):
 	direction = passed
-	scale.x = passed.x
 
 func setAp(value):
 	ap=value*10

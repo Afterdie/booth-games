@@ -16,13 +16,13 @@ var charging:bool = false #charging flag
 @onready var chargeTimer = $chargeTimer #how long has the shoot btn been held down
 var tempShot:int = 6 #for visual purposes
 
-@export var shootingDeviation:int = 5000
+@export var shootingDeviation:int = 1
 
 #HP variables
 @export var hp:int = 100
 
 func _ready():
-	pass
+	shootingDeviation*=5000
 
 func _process(delta:float) -> void:
 	if(curShot>6): #if for some reason it exceeds

@@ -18,7 +18,7 @@ shape = SubResource("CircleShape2D_4ougu")
 
 [node name="shootingPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(70, 0)
+position = Vector2(80, 0)
 
 [node name="score" type="Label" parent="."]
 unique_name_in_owner = true
