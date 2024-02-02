@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bp6ug3jlkq46i" path="res://icon.svg" id="2_dbhac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo3b6"]
+size = Vector2(4, 20)
 
 [node name="bullet" type="Area2D"]
 top_level = true

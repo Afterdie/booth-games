@@ -124,7 +124,7 @@ func take_damage(ap:int):
 	print("took damage")
 
 func death():
-	print("p%s lost" %id) 
+	print("p%s lost" %id)
 	queue_free()
 
 func updateHp():
