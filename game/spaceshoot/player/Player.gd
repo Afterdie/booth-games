@@ -45,7 +45,6 @@ func _physics_process(delta:float) -> void:
 	shotRegen()
 
 func updateUI():
-	updateHp()
 	updateShot()
  #-------------------Movement Logic-------------------#
 
@@ -71,9 +70,10 @@ func apply_friction(delta:float) -> void:
 #check if the shoot button has been clicked
 func checkShoot():
 	if(Input.is_action_just_pressed("p%s_shoot" %id) && curShot>0):
+		print("started charging with ",curShot," balls")
 		charging = true
 		chargeTimer.start(curShot)
-	if(Input.is_action_just_released("p%s_shoot" %id)):
+	if(Input.is_action_just_released("p%s_shoot" %id) && charging):
 		charging = false
 		shoot(curShot-floor(chargeTimer.time_left))
 		chargeTimer.stop()
@@ -114,7 +114,6 @@ func shotRegen():
 		timer.start(regenCooldown)
 
 func _on_shoot_cooldown_timeout():
-	print("added one bullet")
 	curShot+=1
 
 #-------------------Health Logic-------------------#
@@ -132,6 +131,3 @@ func take_damage(ap:int):
 func death():
 	print("p%s lost" %id)
 	queue_free()
-
-func updateHp():
-	hpLabel.text = str(hp)
