@@ -72,9 +72,11 @@ func checkShoot():
 	if(Input.is_action_just_pressed("p%s_shoot" %id) && curShot>0):
 		print("started charging with ",curShot," balls")
 		charging = true
+		$dmgAnim.play("charge")
 		chargeTimer.start(curShot)
 	if(Input.is_action_just_released("p%s_shoot" %id) && charging):
 		charging = false
+		$dmgAnim.stop()
 		shoot(curShot-floor(chargeTimer.time_left))
 		chargeTimer.stop()
 
@@ -124,6 +126,8 @@ func _on_shoot_cooldown_timeout():
 func take_damage(ap:int):
 	characterHp.modulate.a8 -= 255/10
 	hp-=ap
+	$dmgAnim.dmgAnimation()
+	$dmgSFX.play()
 	if(hp<=0):
 		death()
 	print("took damage")
