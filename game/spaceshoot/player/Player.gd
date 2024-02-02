@@ -83,7 +83,12 @@ func shoot(power:int):
 		new_bullet.scale += Vector2(power,power)*0.7
 		new_bullet.global_position = %shootingPoint.global_position
 		var yComp:float = 0.0 + velocity.y/shootingDeviation
-		new_bullet.setVelocity(Vector2(1,yComp))
+		var xComp:float
+		if(id==1):
+			xComp = 1
+		else:
+			xComp = -1
+		new_bullet.setVelocity(Vector2(xComp,yComp))
 		new_bullet.setAp(power)
 		%shootingPoint.add_child(new_bullet)
 		curShot-=power
