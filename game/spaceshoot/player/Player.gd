@@ -14,16 +14,24 @@ var charging:bool = false #charging flag
 @onready var chargeTimer = $chargeTimer #how long has the shoot btn been held down
 var tempShot:int = 6 #for visual purposes
 
+@export var shootingDeviation:int = 5000
 
 func _ready():
 	pass
 
 func _process(delta:float) -> void:
+	if(curShot>6): #if for some reason it exceeds
+		curShot=6
+	#dev tools
+	if(Input.is_action_just_pressed("dev")):
+		curShot = 6
+	
 	updateShot()
 	apply_traction(delta)
 	apply_friction(delta)
 
 func _physics_process(delta:float) -> void:
+	print(velocity.y)
 	move_and_slide()
 	checkShoot()
 	shotRegen()
@@ -67,6 +75,8 @@ func shoot(power:int):
 		var new_bullet = bullet.instantiate()
 		new_bullet.scale += Vector2(power,power)*0.7
 		new_bullet.global_position = %shootingPoint.global_position
+		var yComp:float = 0.0 + velocity.y/shootingDeviation
+		new_bullet.setVelocity(Vector2(1,yComp))
 		%shootingPoint.add_child(new_bullet)
 		curShot-=power
 
