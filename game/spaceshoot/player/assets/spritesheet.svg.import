@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr0owrk6vw1bo"
-path="res://.godot/imported/characterOutline.svg-ad46d7f4253a0ce499532f081883858e.ctex"
+uid="uid://lfyicbxmb0ct"
+path="res://.godot/imported/spritesheet.svg-cff47b5bf6d9519c67b63c04307644e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spaceshoot/player/assets/characterOutline.svg"
-dest_files=["res://.godot/imported/characterOutline.svg-ad46d7f4253a0ce499532f081883858e.ctex"]
+source_file="res://spaceshoot/player/assets/spritesheet.svg"
+dest_files=["res://.godot/imported/spritesheet.svg-cff47b5bf6d9519c67b63c04307644e0.ctex"]
 
 [params]
 

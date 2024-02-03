@@ -56,6 +56,7 @@ func _physics_process(_delta:float) -> void:
 	shotRegen()
 
 func updateUI():
+	$characterOutline.region_rect.position.x = 600*(6-curShot)
 	updateShot()
  #-------------------Movement Logic-------------------#
 
@@ -116,6 +117,7 @@ func updateShot():
 	tempShot = chargeTimer.time_left
 	if(charging):
 		%score.text = str(tempShot)
+		$characterOutline.region_rect.position.x = 600*(6-tempShot)
 	else:
 		%score.text = str(curShot)
 
