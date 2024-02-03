@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmyoapuw6ppee"]
+[gd_scene load_steps=6 format=3 uid="uid://dmyoapuw6ppee"]
 
-[ext_resource type="PackedScene" uid="uid://buhnahgb68egf" path="res://spaceshoot/player/player.tscn" id="1_3qw6i"]
 [ext_resource type="Texture2D" uid="uid://wq8n2h8kdplg" path="res://spaceshoot/player/assets/bg.svg" id="1_mvkdp"]
+[ext_resource type="Script" path="res://spaceshoot/level/world.gd" id="1_v44ai"]
+[ext_resource type="PackedScene" uid="uid://blqq2hlrh4vi6" path="res://spaceshoot/level/idle.tscn" id="4_sd854"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2842x"]
 size = Vector2(31.25, 1297.5)
@@ -10,16 +11,14 @@ size = Vector2(31.25, 1297.5)
 size = Vector2(4, 20)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_v44ai")
 
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
 texture = ExtResource("1_mvkdp")
 
-[node name="P1" parent="." instance=ExtResource("1_3qw6i")]
-position = Vector2(308, 198)
-id = 1
-
 [node name="bounds" type="StaticBody2D" parent="."]
+visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
@@ -41,11 +40,14 @@ rotation = 4.71239
 shape = SubResource("RectangleShape2D_2842x")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="bounds"]
-position = Vector2(640, 360)
+position = Vector2(641, 360)
 scale = Vector2(1, 40)
 shape = SubResource("RectangleShape2D_lixrj")
 
-[node name="P2" parent="." instance=ExtResource("1_3qw6i")]
-position = Vector2(853, 228)
-scale = Vector2(-1, 1)
+[node name="panel1" parent="." instance=ExtResource("4_sd854")]
+position = Vector2(325, 360)
+id = 1
+
+[node name="panel2" parent="." instance=ExtResource("4_sd854")]
+position = Vector2(956, 360)
 id = 2

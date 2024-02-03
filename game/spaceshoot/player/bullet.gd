@@ -5,7 +5,7 @@ var direction = Vector2(1,0)
 var ap:int
 
 func _ready():
-	shotSpeed*=1500
+	shotSpeed*=750
 
 func _physics_process(delta):
 	position += direction * shotSpeed * delta

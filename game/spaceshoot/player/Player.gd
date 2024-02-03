@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var id:int
 
 #Movement Variables#
-@export var acceleration:float = 7000
+@export var acceleration:float = 3500
 @export var friction:float = 7
 
 #Shooting Variables#
@@ -20,6 +20,17 @@ var tempShot:int = 6 #for visual purposes
 
 #HP variables
 @export var hp:int = 100
+
+func setId(val:int):
+	id=val
+	setPos(val)
+
+func setPos(val:int):
+	if(val==1):
+		position = Vector2(320,360)
+	if(val==2):
+		position = Vector2(960,360)
+		scale.x *= -1
 
 func _ready():
 	shootingDeviation*=5000
@@ -39,7 +50,7 @@ func _process(delta:float) -> void:
 	apply_traction(delta)
 	apply_friction(delta)
 
-func _physics_process(delta:float) -> void:
+func _physics_process(_delta:float) -> void:
 	move_and_slide()
 	checkShoot()
 	shotRegen()
@@ -120,7 +131,6 @@ func _on_shoot_cooldown_timeout():
 
 #-------------------Health Logic-------------------#
 
-@onready var hpLabel = $hp
 @onready var characterHp = $characterHp
 
 func take_damage(ap:int):
@@ -134,4 +144,9 @@ func take_damage(ap:int):
 
 func death():
 	print("p%s lost" %id)
+	get_parent().setScreen(id)
+	get_parent().stopGame()
 	queue_free()
+
+func resetShot():
+	curShot=6

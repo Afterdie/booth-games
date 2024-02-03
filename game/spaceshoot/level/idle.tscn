@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://blqq2hlrh4vi6"]
+
+[ext_resource type="Texture2D" uid="uid://bchnjhmn12623" path="res://spaceshoot/player/assets/idle.svg" id="1_nqnwv"]
+[ext_resource type="FontFile" uid="uid://cdmubggkmhwy5" path="res://spaceshoot/assets/PixeloidSans-Bold.ttf" id="2_3sqc2"]
+[ext_resource type="Script" path="res://spaceshoot/level/idle.gd" id="2_s5dto"]
+
+[node name="panel" type="Node2D"]
+script = ExtResource("2_s5dto")
+
+[node name="Idle" type="Sprite2D" parent="."]
+texture = ExtResource("1_nqnwv")
+
+[node name="id" type="Label" parent="."]
+offset_left = -117.0
+offset_top = -93.5
+offset_right = 117.0
+offset_bottom = 93.5
+theme_override_fonts/font = ExtResource("2_3sqc2")
+theme_override_font_sizes/font_size = 150
+text = "P1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="state" type="Label" parent="."]
+offset_left = -164.0
+offset_top = 200.0
+offset_right = 164.0
+offset_bottom = 265.0
+theme_override_fonts/font = ExtResource("2_3sqc2")
+theme_override_font_sizes/font_size = 50
+text = "Not Ready"
+horizontal_alignment = 1
+vertical_alignment = 1
