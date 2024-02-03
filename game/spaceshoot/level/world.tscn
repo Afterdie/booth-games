@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmyoapuw6ppee"]
+[gd_scene load_steps=7 format=3 uid="uid://dmyoapuw6ppee"]
 
 [ext_resource type="Texture2D" uid="uid://wq8n2h8kdplg" path="res://spaceshoot/player/assets/bg.svg" id="1_mvkdp"]
 [ext_resource type="Script" path="res://spaceshoot/level/world.gd" id="1_v44ai"]
+[ext_resource type="FontFile" uid="uid://cdmubggkmhwy5" path="res://spaceshoot/assets/PixeloidSans-Bold.ttf" id="4_pb0rd"]
 [ext_resource type="PackedScene" uid="uid://blqq2hlrh4vi6" path="res://spaceshoot/level/idle.tscn" id="4_sd854"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2842x"]
@@ -51,3 +52,14 @@ id = 1
 [node name="panel2" parent="." instance=ExtResource("4_sd854")]
 position = Vector2(956, 360)
 id = 2
+
+[node name="streak" type="Label" parent="."]
+offset_left = 534.0
+offset_top = 20.0
+offset_right = 745.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("4_pb0rd")
+theme_override_font_sizes/font_size = 40
+text = "Streak"
+horizontal_alignment = 1
+vertical_alignment = 1
