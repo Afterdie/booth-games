@@ -137,6 +137,7 @@ func take_damage(ap:int):
 	$dmgAnim.play("damage")
 	$dmgSFX.play()
 	if(hp<=0):
+		#$deathSFX.play()
 		death()
 	print("took damage")
 

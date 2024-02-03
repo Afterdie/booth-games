@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://buhnahgb68egf"]
+[gd_scene load_steps=11 format=3 uid="uid://buhnahgb68egf"]
 
 [ext_resource type="Script" path="res://spaceshoot/player/Player.gd" id="1_2gi33"]
 [ext_resource type="Texture2D" uid="uid://b2vqcwewmq0hv" path="res://spaceshoot/player/assets/characterHp.svg" id="2_yii2k"]
 [ext_resource type="Texture2D" uid="uid://lfyicbxmb0ct" path="res://spaceshoot/player/assets/spritesheet.svg" id="4_0d4a6"]
+[ext_resource type="AudioStream" uid="uid://ctbmvbuth12ew" path="res://spaceshoot/player/assets/death.mp3" id="5_hfmu1"]
 [ext_resource type="AudioStream" uid="uid://y2h6fymas18n" path="res://spaceshoot/player/assets/damage.mp3" id="5_ssnav"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ougu"]
@@ -121,6 +122,10 @@ script = SubResource("GDScript_exv7l")
 [node name="dmgSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ssnav")
 pitch_scale = 1.5
+
+[node name="deathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hfmu1")
+volume_db = 4.0
 
 [connection signal="timeout" from="regenCooldown" to="." method="_on_shoot_cooldown_timeout"]
 [connection signal="timeout" from="chargeTimer" to="." method="_on_charge_timer_timeout"]
