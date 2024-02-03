@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="script.js"></script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 id="heading"></h1>
+    <script>
+        const socket = io();
+        // Update heading on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Extract 'data' parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const param = urlParams.get('poll');
+            if (param) {
+                // Use the parameter name as the heading text
+                document.getElementById('heading').innerText = decodeURIComponent(param);
+            }
+        });
+
+        socket.on('redirect-voting-room', (data) => {
+            // Change heading with parsed data
+            document.getElementById('heading').innerText = data;
+        });
+    </script>
+    <button id="leftButton">Left</button>
+    <button id="rightButton">Right</button>
+    <div id="bars">
+        <div id="leftBar" style="background-color: blue; height: 20px;"></div>
+        <div id="rightBar" style="background-color: red; height: 20px;"></div>
+    </div>
+    <h2 id="winner"></h2>
+    <script>
+        socket.on('get-winner', (data) => {
+            // Change heading with parsed data
+            document.getElementById('winner').innerText = data;
+        });
+    </script>
+</body>
+
+</html>
