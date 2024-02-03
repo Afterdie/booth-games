@@ -46,7 +46,7 @@ func _process(delta:float) -> void:
 	if(Input.is_action_just_pressed("dev")):
 		curShot = 6
 	
-	updateUI()
+	updateShot()
 	apply_traction(delta)
 	apply_friction(delta)
 
@@ -55,9 +55,6 @@ func _physics_process(_delta:float) -> void:
 	checkShoot()
 	shotRegen()
 
-func updateUI():
-	$characterOutline.region_rect.position.x = 600*(6-curShot)
-	updateShot()
  #-------------------Movement Logic-------------------#
 
 func apply_traction(delta:float) -> void:
@@ -116,10 +113,9 @@ func shoot(power:int):
 func updateShot():
 	tempShot = chargeTimer.time_left
 	if(charging):
-		%score.text = str(tempShot)
 		$characterOutline.region_rect.position.x = 600*(6-tempShot)
 	else:
-		%score.text = str(curShot)
+		$characterOutline.region_rect.position.x = 600*(6-curShot)
 
 #regen logic
 func shotRegen():
