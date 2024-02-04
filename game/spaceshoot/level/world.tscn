@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmyoapuw6ppee"]
+[gd_scene load_steps=10 format=3 uid="uid://dmyoapuw6ppee"]
 
 [ext_resource type="Texture2D" uid="uid://wq8n2h8kdplg" path="res://spaceshoot/player/assets/bg.svg" id="1_mvkdp"]
 [ext_resource type="Script" path="res://spaceshoot/level/world.gd" id="1_v44ai"]
 [ext_resource type="FontFile" uid="uid://cdmubggkmhwy5" path="res://spaceshoot/assets/PixeloidSans-Bold.ttf" id="4_pb0rd"]
 [ext_resource type="PackedScene" uid="uid://blqq2hlrh4vi6" path="res://spaceshoot/level/idle.tscn" id="4_sd854"]
+[ext_resource type="Texture2D" uid="uid://bhhh75iyywkof" path="res://spaceshoot/player/assets/shot.svg" id="5_d4w72"]
+[ext_resource type="Script" path="res://spaceshoot/level/voting.gd" id="5_e4hdn"]
+[ext_resource type="Script" path="res://spaceshoot/level/getResult.gd" id="6_2h1kb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2842x"]
 size = Vector2(31.25, 1297.5)
@@ -53,13 +56,27 @@ id = 1
 position = Vector2(956, 360)
 id = 2
 
+[node name="Shot" type="Sprite2D" parent="."]
+modulate = Color(0.324219, 0.324219, 0.324219, 1)
+position = Vector2(640, 44.25)
+scale = Vector2(0.36, 0.3475)
+texture = ExtResource("5_d4w72")
+
 [node name="streak" type="Label" parent="."]
-offset_left = 534.0
+offset_left = 535.0
 offset_top = 20.0
-offset_right = 745.0
+offset_right = 746.0
 offset_bottom = 85.0
 theme_override_fonts/font = ExtResource("4_pb0rd")
 theme_override_font_sizes/font_size = 40
-text = "Streak"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="beginVoting" type="HTTPRequest" parent="."]
+script = ExtResource("5_e4hdn")
+
+[node name="getResult" type="HTTPRequest" parent="."]
+script = ExtResource("6_2h1kb")
+
+[connection signal="request_completed" from="beginVoting" to="beginVoting" method="_on_request_completed"]
+[connection signal="request_completed" from="getResult" to="getResult" method="_on_request_completed"]

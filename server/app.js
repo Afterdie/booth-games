@@ -67,6 +67,7 @@ app.get('/api/get-winner', (req, res) => {
 // POST route for triggering the redirect
 app.post('/api/trigger-redirect', (req, res) => {
   const data = req.body.value;
+  console.log("bruh")
   // Assuming a successful POST request triggers the redirect
   res.json({ success: true });
   io.emit('redirect-voting-room', data);

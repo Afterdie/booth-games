@@ -81,17 +81,22 @@ func checkReady():
 		p1hidden = true
 		$panel1.modulate.a8 = 255
 		counted=false
+		$getResult.getVote()
 	if(!p2 && !p2hidden):
 		p2hidden = true
 		$panel2.modulate.a8 = 255
 		counted=false
+		$getResult.getVote()
 		
 	if(p1 && p2 && !started):
 		started = true
 		print("Restarted")
+		$beginVoting.triggerVote()
 		resetShots()
 
 
 func resetShots():
 	pl1.resetShot()
 	pl2.resetShot()
+
+#voting triggers#
