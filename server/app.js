@@ -60,7 +60,7 @@ app.get("/api/get-winner", (req, res) => {
     res.json({ winnerCode: 0, type: eventType });
     winner = "Both wins!";
   }
-
+  voteCount.left = voteCount.right = 0;
   io.emit("get-winner", winner);
 });
 var eventType;

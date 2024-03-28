@@ -1,6 +1,7 @@
 extends HTTPRequest
 
-var url = "http://localhost:5001/api/trigger-redirect"
+var url ="https://9c7e-59-98-20-32.ngrok-free.app/api/trigger-redirect"
+
 var headers = ["Content-Type: application/json"]
 
 #pass the data here make lasers dynamic

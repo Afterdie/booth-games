@@ -2,9 +2,10 @@
   "name": "express-api-example",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "socket.io": "^4.7.4"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "nodemon": "^3.1.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

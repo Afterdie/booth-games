@@ -16,6 +16,8 @@ func setScreen(val:int):
 		$panel2.modulate.a8 = 255
 		p2 = false
 
+#UNIVERSAL API RESOURCE (WILL CHANGE EVERYTIME)
+
 #Ready Logic
 var p1:bool = false
 var p2:bool = false
@@ -139,6 +141,7 @@ func laserEvent():
 	add_child(laser)
 	var eventTimer = $eventTimer
 	eventTimer.start()
+	#fix this
 	eventTimer.timeout.connect(func(): laser.queue_free())
 
 func infEvent(id):

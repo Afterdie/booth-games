@@ -1,6 +1,6 @@
 extends HTTPRequest
 
-var url = "http://localhost:5001/api/get-winner"
+var url = "https://9c7e-59-98-20-32.ngrok-free.app/api/get-winner"
 
 func getVote():
 	request(url)
