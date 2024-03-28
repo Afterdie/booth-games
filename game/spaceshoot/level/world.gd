@@ -2,8 +2,6 @@ extends Node2D
 
 func _ready():
 	Engine.time_scale= 2
-	#voting starts here
-	
 
 func _process(_delta:float):
 	checkReady()
@@ -115,19 +113,21 @@ func voteCheck():
 func _on_vote_timer_timeout():
 	#add logic to randomise between events
 	$beginVoting.triggerVote(eventType[0])
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(10).timeout
 	onVoteEnd()
 
 func onVoteEnd():
-	isVotingTimer = true
+	isVotingTimer = false
+	$voteTimer.wait_time=20
 	$getResult.getVote()
 
 func handleEvent(json):
-	if(json.winnerCode!=0):
+	if(!started): return
+	if(json.winnerCode==0):
 		laserEvent()
 		return
 	if(json.type=="Infinite"):
-		infEvent(1)
+		infEvent(json.winnerCode)
 
 func laserEvent():
 	var scene = load("res://spaceshoot/level/laser.tscn")
@@ -149,10 +149,8 @@ func infEvent(id):
 	elif(id==-1):
 		pl2.setInfEvent()
 	var eventTimer = $eventTimer
-	eventTimer.start()
-	print("power started for player: ",id)
-	eventTimer.timeout.connect(func(): 
-		if(id==1): 
+	await get_tree().create_timer(10).timeout
+	if(id==1): 
 			pl1.setInfEvent()
-		elif(id==-1):
-			pl2.setInfEvent())
+	elif(id==-1):
+			pl2.setInfEvent()

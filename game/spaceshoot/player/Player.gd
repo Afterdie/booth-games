@@ -120,10 +120,12 @@ func shoot(power:int):
 #update ui element
 func updateShot():
 	tempShot = chargeTimer.time_left
-	if(charging):
+	if(charging && !powerUp):
 		$characterOutline.region_rect.position.x = 600*(6-tempShot)
 	else:
 		$characterOutline.region_rect.position.x = 600*(6-curShot)
+	if(powerUp):
+		$characterOutline.region_rect.position.x = 600*7
 
 #regen logic
 func shotRegen():

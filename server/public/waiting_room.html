@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waiting Room</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        const socket = io();
+      const socket = io();
 
-        socket.on('redirect-voting-room', (data) => {
-            // Redirect to the voting room
-            window.location.href = `/voting_room?poll=${encodeURIComponent(data)}`;});
+      socket.on("redirect-voting-room", (data) => {
+        // Redirect to the voting room
+        window.location.href = `/voting_room?poll=${encodeURIComponent(data)}`;
+      });
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Welcome to the Waiting Room</h1>
-    <p>This is the waiting room where users wait before entering the voting room.</p>
-</body>
-
+    <p>
+      This is the waiting room where users wait before entering the voting room.
+    </p>
+  </body>
 </html>

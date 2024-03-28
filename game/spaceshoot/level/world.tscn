@@ -97,6 +97,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="voteTimer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="request_completed" from="beginVoting" to="beginVoting" method="_on_request_completed"]
