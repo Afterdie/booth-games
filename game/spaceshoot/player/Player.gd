@@ -20,6 +20,7 @@ var tempShot:int = 6 #for visual purposes
 
 #HP variables
 @export var hp:int = 100
+var powerUp = false
 
 func setId(val:int):
 	id=val
@@ -79,7 +80,7 @@ func apply_friction(delta:float) -> void:
 #check if the shoot button has been clicked
 func checkShoot():
 	if(Input.is_action_just_pressed("p%s_shoot" %id) && curShot>0):
-		print("started charging with ",curShot," balls")
+		#print("started charging with ",curShot," balls")
 		charging = true
 		$dmgAnim.play("charge")
 		chargeTimer.start(curShot)
@@ -89,10 +90,16 @@ func checkShoot():
 		shoot(curShot-floor(chargeTimer.time_left))
 		chargeTimer.stop()
 
+func setInfEvent():
+	powerUp = !powerUp
+	print(powerUp)
+
 #called after button released
 func shoot(power:int):
-	print(power, " balls")
-	if(curShot>0):
+	#print(power, " balls")
+	if(curShot>0 && power>0):
+		if(powerUp): 
+			power = 1
 		const bullet = preload("res://spaceshoot/player/bullet.tscn")
 		var new_bullet = bullet.instantiate()
 		new_bullet.scale += Vector2(power,power)*0.7
@@ -107,7 +114,8 @@ func shoot(power:int):
 		new_bullet.setVelocity(Vector2(xComp,yComp))
 		new_bullet.setAp(power)
 		%shootingPoint.add_child(new_bullet)
-		curShot-=power
+		if(!powerUp): 
+			curShot-=power
 
 #update ui element
 func updateShot():
@@ -139,7 +147,6 @@ func take_damage(ap:int):
 	if(hp<=0):
 		#$deathSFX.play()
 		death()
-	print("took damage")
 
 func death():
 	print("p%s lost" %id)

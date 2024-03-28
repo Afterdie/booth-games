@@ -2,10 +2,13 @@ extends Node2D
 
 func _ready():
 	Engine.time_scale= 2
+	#voting starts here
+	
 
 func _process(_delta:float):
 	checkReady()
 	checkStreak()
+	voteCheck()
 
 func setScreen(val:int):
 	if(val==1):
@@ -22,7 +25,7 @@ var started:bool = false
 var counted:bool = true
 var pl1
 var pl2
-var winner={
+var streakData={
 	"player": 0,
 	"streak": 1
 }
@@ -36,22 +39,23 @@ func checkStreak():
 	if(!started && !counted):
 		counted = true
 		if(p1):
-			if(winner.player!=1):
-				winner.streak=1
+			if(streakData.player!=1):
+				streakData.streak=1
 			else:
-				winner.streak+=1
-			winner.player=1
+				streakData.streak+=1
+			streakData.player=1
+			print(streakData.player)
 		elif(p2):
-			if(winner.player!=2):
-				winner.streak=1
+			if(streakData.player!=2):
+				streakData.streak=1
 			else:
-				winner.streak+=1
-			winner.player=2
+				streakData.streak+=1
+			streakData.player=2
 		updateStreak()
 
 func updateStreak():
-	$streak.text = str(winner.streak)
-	if(winner.player==1):
+	$streak.text = str(streakData.streak)
+	if(streakData.player==1):
 		$streak.modulate = Color8(255,0,102)
 	else:
 		$streak.modulate = Color8(0,204,255)
@@ -81,17 +85,14 @@ func checkReady():
 		p1hidden = true
 		$panel1.modulate.a8 = 255
 		counted=false
-		$getResult.getVote()
 	if(!p2 && !p2hidden):
 		p2hidden = true
 		$panel2.modulate.a8 = 255
 		counted=false
-		$getResult.getVote()
 		
 	if(p1 && p2 && !started):
 		started = true
 		print("Restarted")
-		$beginVoting.triggerVote()
 		resetShots()
 
 
@@ -99,4 +100,59 @@ func resetShots():
 	pl1.resetShot()
 	pl2.resetShot()
 
-#voting triggers#
+var eventType = [
+	"Infinite",
+	"Laser"
+]
+
+var isVotingTimer:bool = false
+
+func voteCheck():
+	if(started && !isVotingTimer):
+		isVotingTimer = true
+		$voteTimer.start()
+
+func _on_vote_timer_timeout():
+	#add logic to randomise between events
+	$beginVoting.triggerVote(eventType[0])
+	await get_tree().create_timer(2).timeout
+	onVoteEnd()
+
+func onVoteEnd():
+	isVotingTimer = true
+	$getResult.getVote()
+
+func handleEvent(json):
+	if(json.winnerCode!=0):
+		laserEvent()
+		return
+	if(json.type=="Infinite"):
+		infEvent(1)
+
+func laserEvent():
+	var scene = load("res://spaceshoot/level/laser.tscn")
+	var laser = scene.instantiate()
+	var pos:float = randf_range(220, 500)
+	print("added laser at ", pos)	
+	laser.setPosition(pos)
+	laser.z_index = 0
+	add_child(laser)
+	var eventTimer = $eventTimer
+	eventTimer.start()
+	eventTimer.timeout.connect(func(): laser.queue_free())
+
+func infEvent(id):
+	if(id==0):
+		return
+	elif(id==1):
+		pl1.setInfEvent()
+	elif(id==-1):
+		pl2.setInfEvent()
+	var eventTimer = $eventTimer
+	eventTimer.start()
+	print("power started for player: ",id)
+	eventTimer.timeout.connect(func(): 
+		if(id==1): 
+			pl1.setInfEvent()
+		elif(id==-1):
+			pl2.setInfEvent())

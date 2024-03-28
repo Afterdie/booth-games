@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://daselhovl0tpw"]
+
+[ext_resource type="Script" path="res://spaceshoot/level/laser.gd" id="1_dgb56"]
+[ext_resource type="Texture2D" uid="uid://bhhh75iyywkof" path="res://spaceshoot/player/assets/shot.svg" id="1_fakki"]
+
+[node name="laser" type="Node2D"]
+rotation = 1.5708
+script = ExtResource("1_dgb56")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -13.7931)
+scale = Vector2(0.5, 0.145)
+texture = ExtResource("1_fakki")
+
+[node name="shootingPoint" type="Marker2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="sprite3" type="Sprite2D" parent="."]
+position = Vector2(0, -1245)
+scale = Vector2(0.5, 0.145)
+texture = ExtResource("1_fakki")
