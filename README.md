@@ -1,15 +1,55 @@
-Controls
+# Pong-up!
 
-p1_up = w
-p1_down = s
-p1_left = a
-p1_right = d
-p1_shoot = v
+Pong but with a twist. 2v2 where the audience decides who wins. Out maneuver your opponent and hope for the best while the audience decides who gets the power-ups.
 
-refill shots for both = c
+## Demo
 
-p2_up = p
-p2_down = ;
-p2_left = l
-p2_right = '
-p2_shoot = ,
+Insert gif or link to demo
+
+## Controls
+
+### Movement
+
+- **P1** - UP LEFT RIGHT DOWN - W A S D
+- **P2** - UP LEFT RIGHT DOWN - I J K L
+
+### Shooting
+
+- **P1** - C
+- **P2** - N
+
+# Getting Started
+
+Clone the repo onto your local machine.
+
+```
+  git clone https://github.com/Afterdie/booth-games.git
+```
+
+## Setting up the server
+
+Once you are done, open a terminal in the newly downloaded directory and navigate to the server directory
+
+```
+cd server
+```
+
+Install all required dependencies
+
+```
+npm install
+```
+
+Start the server
+
+```
+node app.js
+```
+
+## Setting up Godot
+
+Godot is a lightweight game engine required to run this game. Get it [here](https://godotengine.org/download/)
+
+Open up Godot and select Import
+
+Navigate to the folder you just cloned and select the /game directory.
