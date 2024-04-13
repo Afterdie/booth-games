@@ -3,8 +3,16 @@
 Pong but with a twist. 2v2 where the audience decides who wins. Out maneuver your opponent and hope for the best while the audience decides who gets the power-ups.
 
 ## Demo
+Gameplay
 
-Insert gif or link to demo
+https://github.com/Afterdie/booth-games/assets/82810411/59286c92-c659-4880-9898-7565b1d4e8d6
+
+Voting 
+
+
+https://github.com/Afterdie/booth-games/assets/82810411/a7589223-a48c-4a16-9c75-cda25e725b87
+
+
 
 ## Controls
 
